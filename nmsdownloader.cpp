@@ -288,7 +288,7 @@ int main() {
 	
 
 	#ifdef _WIN32
-		string command += "\"" + exePath + "\" -app 275850 -depot 275851 -manifest " + manifest.manifestID + " -dir \"" + dirPath.string() + "\" -username \"" + username + "\"";
+		string command = "\"" + exePath + "\" -app 275850 -depot 275851 -manifest " + manifest.manifestID + " -dir \"" + dirPath.string() + "\" -username \"" + username + "\"";
     	cout << "Starting Steam Depot Downloader:\n" << command << "\n";
 		if (!runDepotDownloaderWindows(command)) {
         	cerr << "Failed to execute DepotDownloader via CreateProcess\n";
