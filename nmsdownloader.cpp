@@ -3,7 +3,9 @@
 #include <vector>
 #include <filesystem>
 #include <cstdlib>
-
+#ifdef _WIN32
+	#include <windows.h>
+#endif
 using namespace std;
 
 struct ManifestChoice {
@@ -13,7 +15,6 @@ struct ManifestChoice {
 };
 
 #ifdef _WIN32 // Define how to handle things depending on OS
-	#include <windows.h>
 	#define PATH_CHECK_CMD "where"
     const string SDD_EXECUTABLE = "DepotDownloader.exe";
 
