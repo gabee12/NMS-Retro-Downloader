@@ -28,7 +28,7 @@ struct ManifestChoice {
     	// Create the process
     	if (!CreateProcessA(
         	NULL,            // Application name (use full path if needed)
-        	cmd.data(),      // Command line (must be mutable)
+        	&cmd[0],      // Command line (must be mutable)
         	NULL, NULL,      // Process & thread security attributes
         	FALSE,           // Inherit handles
         	0,               // Creation flags
