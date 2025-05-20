@@ -56,13 +56,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: nms-wrapper-ubuntu-latest
-          path: dist/linux
+          path: dist
 
       - name: Download Windows artifact
         uses: actions/download-artifact@v4
         with:
           name: nms-wrapper-windows-latest
-          path: dist/windows
+          path: dist
 
       - name: Create GitHub Release with binaries
         uses: softprops/action-gh-release@v2
