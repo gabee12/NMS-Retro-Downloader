@@ -39,15 +39,15 @@ struct ManifestChoice {
         	return false;
     	}
 
-    // Wait until child process exits.
-    WaitForSingleObject(pi.hProcess, INFINITE);
+    	// Wait until child process exits.
+    	WaitForSingleObject(pi.hProcess, INFINITE);
 
-    // Close handles.
-    CloseHandle(pi.hProcess);
-    CloseHandle(pi.hThread);
+    	// Close handles.
+    	CloseHandle(pi.hProcess);
+    	CloseHandle(pi.hThread);
 
-    return true;
-}
+    	return true;
+	}
 #elif __linux__
 	#include <unistd.h>
 	#include <sys/types.h>
