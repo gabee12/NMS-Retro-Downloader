@@ -21,7 +21,7 @@ jobs:
         run: |
           g++ -std=c++17 -o nms-downloader-wrapper nmsdownloader.cpp
           mkdir -p dist
-          mv nms-downloader-wrapper dist/nms-downloader-linux
+          mv nms-downloader-wrapper dist/nms-wrapper-linux
           
       - name: Setup MSVC environment and Build on Windows
         if: matrix.os == 'windows-latest'
@@ -39,7 +39,7 @@ jobs:
           # Create dist dir
           New-Item -ItemType Directory -Path dist -Force
           # Call vcvarsall.bat for x64 environment and then compile
-          cmd /c '"'"$vcvarsall"'" x64 && cl.exe /EHsc /std:c++17 nmsdownloader.cpp /Fe:dist\nms-downloader-wrapper.exe'
+          cmd /c '"'"$vcvarsall"'" x64 && cl.exe /EHsc /std:c++17 nmsdownloader.cpp /Fe:dist\nms-wrapper-windows.exe'
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
