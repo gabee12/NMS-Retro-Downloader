@@ -275,7 +275,7 @@ int main() {
 		if (answer == "y") {
 			filesystem::create_directories(dir);
 		} else {
-			cout << "Invalid input. Exiting...";
+			cout << "Exiting...";
 			exit(1);
 		}
 	}
