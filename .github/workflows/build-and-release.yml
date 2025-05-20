@@ -36,7 +36,8 @@ jobs:
             Write-Error "vcvarsall.bat not found at $vcvarsall"
             exit 1
           }
-
+          # Create dist dir
+          New-Item -ItemType Directory -Path dist -Force
           # Call vcvarsall.bat for x64 environment and then compile
           cmd /c '"'"$vcvarsall"'" x64 && cl.exe /EHsc /std:c++17 nmsdownloader.cpp /Fe:dist\nms-downloader-wrapper.exe'
 
