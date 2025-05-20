@@ -21,16 +21,24 @@ jobs:
         run: |
           g++ -std=c++17 -o nms-downloader-wrapper nmsdownloader.cpp
           mkdir -p dist
-          mv nms-downloader-wrapper dist/nms-downloader-wrapper
+          mv nms-downloader-wrapper dist/nms-downloader-linux
           
-      - name: Build on Windows
+      - name: Setup MSVC environment and Build on Windows
         if: matrix.os == 'windows-latest'
         shell: pwsh
         run: |
-          # Compile with MSVC
-          # Assuming your source file is main.cpp
-          # Compile to nms-wrapper.exe
-          cl.exe /EHsc /std:c++17 nmsdownloader.cpp /Fe:dist\nms-downloader-wrapper.exe
+          # Setup MSVC environment by calling vcvarsall.bat
+          $vswherePath = "${Env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+          $vsInstallPath = & $vswherePath -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
+          $vcvarsall = "$vsInstallPath\VC\Auxiliary\Build\vcvarsall.bat"
+
+          if (-Not (Test-Path $vcvarsall)) {
+            Write-Error "vcvarsall.bat not found at $vcvarsall"
+            exit 1
+          }
+
+          # Call vcvarsall.bat for x64 environment and then compile
+          cmd /c "`"$vcvarsall`" x64 && cl.exe /EHsc /std:c++17 nmsdownloader.cpp /F
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
