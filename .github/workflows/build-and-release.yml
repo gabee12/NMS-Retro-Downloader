@@ -19,7 +19,7 @@ jobs:
       - name: Build on Linux
         if: matrix.os == 'ubuntu-latest'
         run: |
-          g++ -std=c++17 -o nms-wrapper main.cpp
+          g++ -std=c++17 -o nms-downloader-wrapper nmsdownloader.cpp
           mkdir -p dist
           mv nms-wrapper dist/nms-wrapper-linux
           
@@ -30,7 +30,7 @@ jobs:
           # Compile with MSVC
           # Assuming your source file is main.cpp
           # Compile to nms-wrapper.exe
-          cl.exe /EHsc /std:c++17 main.cpp /Fe:dist\nms-wrapper-windows.exe
+          cl.exe /EHsc /std:c++17 nmsdownloader.cpp /Fe:dist\nms-downloader-wrapper.exe
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
